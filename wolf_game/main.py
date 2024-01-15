@@ -1,6 +1,7 @@
 import pygame
 import psutil
 import random
+
 # while True:
 #     print('cpu usage:', psutil.cpu_percent())
 #     print('memory usage:', psutil.virtual_memory()[2])
@@ -13,6 +14,7 @@ import random
 # for gpu in GPUs:
 #     print(gpu.memoryUsed)
 #     print(gpu.memoryUtil)
+
 pygame.init()
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 700
@@ -59,7 +61,10 @@ while running:
 
 
         meat_rect.y += 5
-        print(meat_rect.y)
+        if meat_rect.top >= SCREEN_HEIGHT:
+            score += meat_rect.y
+            meat_rect.topleft = (random.randint(0, SCREEN_WIDTH - meat_image.get_width()), 0)
+
 
         if meat_rect.colliderect(wolf_rect):
             score += meat_rect.y
